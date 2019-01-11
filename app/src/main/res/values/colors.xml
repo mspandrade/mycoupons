@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#7B4397</color>
+    <color name="colorPrimaryDark">#652A83</color>
+    <color name="colorAccent">#DC2430</color>
+
+    <color name="colorSecondary">#5E8AC2</color>
+
+    <color name="textBar">#FFFFFF</color>
+
+    <color name="tabIndicatorColor">#FFFFFF</color>
+    <color name="tabTextDisable">#66FFFFFF</color>
+    <color name="tabTextSelected">#FFFFFF</color>
+
+    <color name="favoriteIconCard">#E29933</color>
+    <color name="colorCardDivider">#E5E5E5</color>
+
+    <color name="backgroundQRCode">#6E000000</color>
+    <color name="scannerBarColor">#780ce900</color>
+</resources>

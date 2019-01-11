@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MeusCupons</string>
+    <string name="coupons">cupons</string>
+    <string name="favorite">favoritos</string>
+    <string name="complete">completos</string>
+    <string name="configuration">Configurações</string>
+    <string name="search">Buscar</string>
+    <string name="status">status:</string>
+    <string name="dueDate">vencimento em:</string>
+    <string name="companyNameExample">Company Name</string>
+    <string name="couponDescriptionExample">A description that define you coupon an the pride by conclusion favorite. Finally you must not put a text too long.</string>
+    <string name="coupon">Cupom</string>
+    <string name="readCoupon">Ler cupom</string>
+    <string name="qrCodeCameraPermissionError">Não foi possivel abrir a camera</string>
+
+    <string name="default_notification_channel_id">DefaultChannel</string>
+
+
+    <!-- transitions -->
+    <string name="transitionCardCoupon">transitionCardCoupon</string>
+    <string name="transitionImageCardCoupon">transitionImageCardCoupon</string>
+    <string name="transitionCompanyNameCardCoupon">transitionCompanyNameCardCoupon</string>
+</resources>
