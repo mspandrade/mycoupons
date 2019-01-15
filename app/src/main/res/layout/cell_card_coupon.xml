@@ -138,10 +138,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="28dp"
                                 android:text="@string/receive"
-                                android:textAlignment="textStart"
-                                android:paddingStart="10dp"
-                                android:paddingEnd="0dp"
-                                android:background="@android:color/transparent"
+                                android:textAlignment="center"
+                                android:layout_marginEnd="30dp"
+                                android:background="@drawable/background_receive_button"
                                 android:textColor="@color/receiveTextButtonColor"
                                 android:visibility="gone"/>
 
