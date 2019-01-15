@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.projectme.mpandrade.mycoupon.adapter.CouponListAdapter
+import com.projectme.mpandrade.mycoupon.adapter.controller.CouponItemController
 import com.projectme.mpandrade.mycoupon.data.view.CouponData
 import kotlinx.android.synthetic.main.activity_coupon.*
 
@@ -36,7 +37,7 @@ class CouponActivity : AppCompatActivity() {
         if (coupon?.image != null) {
 
             Glide.with(this)
-                    .applyDefaultRequestOptions(CouponListAdapter.requestOptions)
+                    .applyDefaultRequestOptions(CouponItemController.requestOptions)
                     .asBitmap()
                     .load(coupon?.image)
                     .into(couponImage)

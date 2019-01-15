@@ -14,10 +14,12 @@
     <string name="qrCodeCameraPermissionError">Não foi possivel abrir a camera</string>
 
     <string name="default_notification_channel_id">DefaultChannel</string>
-
+    <string name="statusContent">%1$d / %2$d</string>
+    <string name="receive">receber</string>
 
     <!-- transitions -->
     <string name="transitionCardCoupon">transitionCardCoupon</string>
     <string name="transitionImageCardCoupon">transitionImageCardCoupon</string>
     <string name="transitionCompanyNameCardCoupon">transitionCompanyNameCardCoupon</string>
+
 </resources>
