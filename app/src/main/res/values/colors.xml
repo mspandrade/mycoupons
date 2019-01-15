@@ -13,6 +13,7 @@
     <color name="tabTextSelected">#FFFFFF</color>
 
     <color name="favoriteIconCard">#E29933</color>
+    <color name="notFavoriteIconCard">#888888</color>
     <color name="colorCardDivider">#E5E5E5</color>
 
     <color name="backgroundQRCode">#6E000000</color>

@@ -21,5 +21,6 @@
     <string name="transitionCardCoupon">transitionCardCoupon</string>
     <string name="transitionImageCardCoupon">transitionImageCardCoupon</string>
     <string name="transitionCompanyNameCardCoupon">transitionCompanyNameCardCoupon</string>
+    <string name="transitionDescriptionCardCoupon">transitionDescriptionCardCoupon</string>
 
 </resources>

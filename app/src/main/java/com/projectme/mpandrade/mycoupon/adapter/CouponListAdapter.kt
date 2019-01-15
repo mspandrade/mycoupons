@@ -34,10 +34,11 @@ class CouponListAdapter(
         val coupon = coupons[position]
         val controller = viewHolder.controller
 
-        controller.setStatus(coupon.status, coupon.completeIn)
+        controller.setStatus(coupon)
         controller.setCompanyName(coupon.companyName.toUpperCase())
         controller.setDescription(coupon.description)
         controller.setImage(coupon.image)
+        controller.setIsFavorite(coupon.favorite)
 
         controller.cardView.setOnClickListener {
             listener.get()?.onCardCouponClicked(coupon, controller)

@@ -1,6 +1,5 @@
 package com.projectme.mpandrade.mycoupon.adapter.controller
 
-import android.content.Context
 import android.support.v4.util.Pair
 import android.support.v4.widget.CircularProgressDrawable
 import android.support.v7.widget.CardView
@@ -11,6 +10,7 @@ import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.projectme.mpandrade.mycoupon.R
+import com.projectme.mpandrade.mycoupon.data.view.CouponData
 
 class CouponItemController(view: View) {
 
@@ -33,21 +33,13 @@ class CouponItemController(view: View) {
 
     private val statusArea: LinearLayout = view.findViewById(R.id.statusArea)
 
+    val favoriteIcon: ImageView = view.findViewById(R.id.favoriteIcon)
     val completeIcon: ImageView = view.findViewById(R.id.completeIcon)
     val receiveButton: Button = view.findViewById(R.id.receive)
     val favoriteArea: FrameLayout = view.findViewById(R.id.favoriteArea)
     val cardView: CardView = view.findViewById(R.id.cardCoupon)
-    val imageView: ImageView = view.findViewById(R.id.cardImage)
 
-    init {
-        initTransactionNames(view.context)
-    }
-
-    private fun initTransactionNames(context: Context) {
-
-        imageView.transitionName = context.getString(R.string.transitionImageCardCoupon)
-        cardView.transitionName = context.getString(R.string.transitionCardCoupon)
-    }
+    private val imageView: ImageView = view.findViewById(R.id.cardImage)
 
     private fun loadingSpinner() : CircularProgressDrawable {
 
@@ -68,12 +60,12 @@ class CouponItemController(view: View) {
         descriptionTextView.text = description
     }
 
-    fun setStatus(status: Int, completeIn: Int) {
+    fun setStatus(coupon: CouponData) {
 
-        if (status < completeIn) {
+        if (!coupon.isComplete) {
 
             statusTextView.text = statusTextView.context
-                    .getString(R.string.statusContent, status, completeIn)
+                    .getString(R.string.statusContent, coupon.status, coupon.completeIn)
 
             completeIcon.visibility = View.GONE
         } else {
@@ -92,10 +84,23 @@ class CouponItemController(view: View) {
                 .into(imageView)
     }
 
+    fun setIsFavorite(favorite: Boolean) {
+
+        favoriteIcon.setImageResource( if (favorite) {
+
+            R.drawable.ic_favorite
+
+        } else {
+
+            R.drawable.ic_notfavorite
+        })
+    }
+
     val transitionsElements get() : Array<Pair<View, String>> {
 
         return arrayOf<Pair<View, String>>(
-                Pair(imageView, imageView.transitionName)
+                Pair(imageView, imageView.transitionName),
+                Pair(cardView, cardView.transitionName)
         )
     }
 

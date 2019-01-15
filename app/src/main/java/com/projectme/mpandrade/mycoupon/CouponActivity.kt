@@ -2,6 +2,7 @@ package com.projectme.mpandrade.mycoupon
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.bumptech.glide.Glide
 import com.projectme.mpandrade.mycoupon.adapter.CouponListAdapter
 import com.projectme.mpandrade.mycoupon.adapter.controller.CouponItemController
@@ -13,11 +14,9 @@ class CouponActivity : AppCompatActivity() {
     companion object {
 
         const val PARAM_COUPON = "coupon"
-        const val PARAM_IMAGE_TRANSITION_NAME = "imageCardCouponTransition"
-        const val PARAM_CARD_TRANSITION_NAME = "cardCouponTransition"
     }
 
-    private var coupon: CouponData? = null
+    private lateinit var coupon: CouponData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,20 +31,37 @@ class CouponActivity : AppCompatActivity() {
 
         coupon = intent.getSerializableExtra(PARAM_COUPON) as CouponData
 
-        couponImage.transitionName = intent.getStringExtra(PARAM_IMAGE_TRANSITION_NAME)
+        companyName.text = coupon.companyName.toUpperCase()
+        description.text = coupon.description
 
-        if (coupon?.image != null) {
-
-            Glide.with(this)
-                    .applyDefaultRequestOptions(CouponItemController.requestOptions)
-                    .asBitmap()
-                    .load(coupon?.image)
-                    .into(couponImage)
-        }
+        initImageCoupon()
+        initStatus()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    private fun initImageCoupon() {
+
+        Glide.with(this)
+                .applyDefaultRequestOptions(CouponItemController.requestOptions)
+                .asBitmap()
+                .load(coupon.image)
+                .into(couponImage)
+    }
+
+    private fun initStatus() {
+
+        if (!coupon.isComplete) {
+
+            status.text = getString(R.string.statusContent, coupon.status, coupon.completeIn)
+        } else {
+
+            status.visibility = View.GONE
+            receive.visibility = View.VISIBLE
+        }
+
     }
 }

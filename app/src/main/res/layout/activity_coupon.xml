@@ -9,16 +9,90 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/couponImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:transitionName="@string/transitionImageCardCoupon"
+            android:minHeight="300dp"
             android:scaleType="centerCrop"
-            android:minHeight="300dp"/>
+            android:transitionName="@string/transitionImageCardCoupon"
+            app:srcCompat="@drawable/shape_rectangle" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/companyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/companyNameExample"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textSize="30sp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/statusContent"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                    <Button
+                        android:id="@+id/receive"
+                        android:layout_width="match_parent"
+                        android:layout_height="28dp"
+                        android:text="@string/receive"
+                        android:textAlignment="center"
+                        android:background="@drawable/background_receive_button"
+                        android:textColor="@color/receiveTextButtonColor"
+                        android:visibility="gone"/>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/couponDescriptionExample"
+                android:textSize="14sp" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="18dp"
+                android:background="?android:attr/listDivider" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

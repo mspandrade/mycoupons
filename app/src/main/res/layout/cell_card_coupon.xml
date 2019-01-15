@@ -17,6 +17,7 @@
             android:id="@+id/cardCoupon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:transitionName="@string/transitionCardCoupon"
             app:cardCornerRadius="4dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true">
@@ -40,7 +41,8 @@
                             android:layout_width="120dp"
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
-                            android:scaleType="centerCrop" />
+                            android:scaleType="centerCrop"
+                            android:transitionName="@string/transitionImageCardCoupon"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -60,9 +62,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/companyNameExample"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                                 android:textSize="18sp"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1"
+                                android:transitionName="@string/transitionCompanyNameCardCoupon"/>
 
                             <ImageView
                                 android:id="@+id/completeIcon"
@@ -80,7 +83,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="@string/couponDescriptionExample"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:transitionName="transitionDescriptionCardCoupon"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -181,7 +185,7 @@
                                 android:id="@+id/favoriteIcon"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_star_yellow" />
+                                app:srcCompat="@drawable/ic_favorite" />
 
                         </FrameLayout>
 

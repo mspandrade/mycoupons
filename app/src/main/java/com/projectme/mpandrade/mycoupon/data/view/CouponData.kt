@@ -10,6 +10,10 @@ data class CouponData (
         val status: Int,
         val completeIn: Int,
         val dueDate: Date,
-        val image: String
+        val image: String,
+        val favorite: Boolean
 
-)  : Serializable
+)  : Serializable {
+
+    val isComplete get() = status >= completeIn
+}

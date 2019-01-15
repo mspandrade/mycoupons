@@ -35,42 +35,48 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
                 "Na compra de 10 esfirras ganha-se 1",
                 10, 15,
                 Date(),
-                "http://propmark.com.br/static/upload/legacy/thumbs/2014/gtahabibs600.jpg"),
+                "http://propmark.com.br/static/upload/legacy/thumbs/2014/gtahabibs600.jpg",
+                        true),
 
                 CouponData(
                         "McDonald's",
                         "Na compra de 1 lanche ganha-se outro",
                         0, 1,
                         Date(),
-                        "https://geekpublicitario.com.br/wp-content/uploads/2016/03/promocao-big-tasty-2-em-1-mcdonalds-blog-geek-publicitario.jpg"),
+                        "https://geekpublicitario.com.br/wp-content/uploads/2016/03/promocao-big-tasty-2-em-1-mcdonalds-blog-geek-publicitario.jpg",
+                        false),
 
                 CouponData(
                         "Divino Fogão",
                         "A cada 5 refeições ganha-se um brinde",
                         5, 5,
                         Date(),
-                        "https://anrbrasil.org.br/wp-content/uploads/2018/02/Post_03b_Ferdinand_600x600px.png"),
+                        "https://anrbrasil.org.br/wp-content/uploads/2018/02/Post_03b_Ferdinand_600x600px.png",
+                        true),
 
                 CouponData(
                         "Burguer King",
                         "Na compra de 1 lanche ganha-se outro",
                         0, 1,
                         Date(),
-                        "https://static.pelando.com.br/live/threads/thread_full_screen/default/248242_1.jpg"),
+                        "https://static.pelando.com.br/live/threads/thread_full_screen/default/248242_1.jpg",
+                        false),
 
                 CouponData(
                         "Pizza Hut",
                         "Na compra de duas pizzas ganha-se um refrigerante",
                         0, 2,
                         Date(),
-                        "https://i.pinimg.com/originals/cf/de/ab/cfdeabd2b571016773f3c68edfbb8262.jpg"),
+                        "https://i.pinimg.com/originals/cf/de/ab/cfdeabd2b571016773f3c68edfbb8262.jpg",
+                        false),
 
                 CouponData(
                         "KFC",
                         "Na compra de 1 lanche ganha-se outro",
                         0, 1,
                         Date(),
-                        "http://guiadopreço.com/wp-content/uploads/2017/01/kfc--e1483623133166.jpg")
+                        "http://guiadopreço.com/wp-content/uploads/2017/01/kfc--e1483623133166.jpg",
+                        true)
         )
     }
 
@@ -99,8 +105,6 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
 
         val intent = Intent(activity , CouponActivity::class.java)
 
-        intent.putExtra(CouponActivity.PARAM_CARD_TRANSITION_NAME, controller.cardView.transitionName)
-        intent.putExtra(CouponActivity.PARAM_IMAGE_TRANSITION_NAME, controller.imageView.transitionName)
         intent.putExtra(CouponActivity.PARAM_COUPON, coupon)
 
         activity?.startActivityFromFragment(this, intent, 200, options.toBundle())
