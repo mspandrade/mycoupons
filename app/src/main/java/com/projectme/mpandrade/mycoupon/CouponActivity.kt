@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
-import com.projectme.mpandrade.mycoupon.adapter.CouponListAdapter
 import com.projectme.mpandrade.mycoupon.adapter.controller.CouponItemController
 import com.projectme.mpandrade.mycoupon.data.view.CouponData
 import kotlinx.android.synthetic.main.activity_coupon.*

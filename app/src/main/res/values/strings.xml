@@ -23,4 +23,9 @@
     <string name="transitionCompanyNameCardCoupon">transitionCompanyNameCardCoupon</string>
     <string name="transitionDescriptionCardCoupon">transitionDescriptionCardCoupon</string>
 
+
+    <!-- tutorial -->
+    <string name="tutorialFabSecondaryText">Para adicionar um novo cupom ou incluir um uso a ele basta apertar aqui.</string>
+    <string name="tutorialFabPrimaryText">Adicionando um cupom</string>
+
 </resources>

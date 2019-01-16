@@ -1,9 +1,17 @@
 package com.projectme.mpandrade.mycoupon.adapter.controller
 
+import android.content.Context
+import android.graphics.drawable.*
+import android.support.graphics.drawable.AnimatedVectorDrawableCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
 import android.support.v4.widget.CircularProgressDrawable
 import android.support.v7.widget.CardView
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
@@ -41,15 +49,15 @@ class CouponItemController(view: View) {
 
     private val imageView: ImageView = view.findViewById(R.id.cardImage)
 
-    private fun loadingSpinner() : CircularProgressDrawable {
+    private val context get() = cardView.context
 
-        val circularProgressDrawable = CircularProgressDrawable(cardView.context)
+    private fun loadingImage() : Drawable {
 
-        circularProgressDrawable.strokeWidth = 5f
-        circularProgressDrawable.centerRadius = 30f
-        circularProgressDrawable.start()
+        val shape = ContextCompat.getDrawable(context, R.drawable.background_image_animated_vector)!!
 
-        return circularProgressDrawable
+        val anim = (shape as Animatable).start()
+
+        return shape
     }
 
     fun setCompanyName(companyName: String) {
@@ -64,8 +72,7 @@ class CouponItemController(view: View) {
 
         if (!coupon.isComplete) {
 
-            statusTextView.text = statusTextView.context
-                    .getString(R.string.statusContent, coupon.status, coupon.completeIn)
+            statusTextView.text = context.getString(R.string.statusContent, coupon.status, coupon.completeIn)
 
             completeIcon.visibility = View.GONE
         } else {
@@ -77,8 +84,8 @@ class CouponItemController(view: View) {
 
     fun setImage(imageUrl: String) {
 
-        Glide.with(cardView.context)
-                .applyDefaultRequestOptions(requestOptions.placeholder(loadingSpinner()))
+        Glide.with(context)
+                .applyDefaultRequestOptions(requestOptions.placeholder(loadingImage()))
                 .asBitmap()
                 .load(imageUrl)
                 .into(imageView)

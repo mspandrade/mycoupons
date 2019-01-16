@@ -4,7 +4,7 @@
     android:shape="rectangle">
 
     <solid
-        android:color="#949494"/>
+        android:color="@color/colorBackgroundImage"/>
 
     <size
         android:width="300dp"

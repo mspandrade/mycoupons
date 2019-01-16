@@ -20,4 +20,7 @@
     <color name="scannerBarColor">#780ce900</color>
 
     <color name="receiveTextButtonColor">#009607</color>
+
+    <color name="colorBackgroundImagePulse">#e1e1e1</color>
+    <color name="colorBackgroundImage">#c2c0c0</color>
 </resources>

@@ -6,16 +6,17 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.Menu
 import android.widget.Toast
-import com.google.firebase.iid.FirebaseInstanceId
 import com.projectme.mpandrade.mycoupon.adapter.TabItemViewAdapter
 import com.projectme.mpandrade.mycoupon.fragment.CompleteFragment
 import com.projectme.mpandrade.mycoupon.fragment.CouponsFragment
 import com.projectme.mpandrade.mycoupon.fragment.FavoriteFragment
-import com.projectme.mpandrade.mycoupon.service.MyCouponFireBaseMessageService
 import kotlinx.android.synthetic.main.activity_main.*
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,9 +41,10 @@ class MainActivity : AppCompatActivity() {
             if (!hasCameraPermission) {
                 ActivityCompat.requestPermissions(this,  arrayOf(android.Manifest.permission.CAMERA), cameraRequestCode)
             } else {
-                openQrcode()
+                openQRCode()
             }
         }
+        initTutorial()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -55,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == cameraRequestCode && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            openQrcode()
+            openQRCode()
         } else {
             Toast.makeText(this, getString(R.string.qrCodeCameraPermissionError), Toast.LENGTH_LONG).show()
         }
@@ -79,8 +81,18 @@ class MainActivity : AppCompatActivity() {
         tabLayout.getTabAt(2)?.setIcon(R.drawable.tab_selector_favorite)
     }
 
-    private fun openQrcode() {
+    private fun openQRCode() {
         val intent = Intent(this, CouponQRCodeReaderActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun initTutorial() {
+
+        MaterialTapTargetPrompt.Builder(this)
+                .setBackgroundColour(ContextCompat.getColor(this, R.color.colorSecondary))
+                .setTarget(R.id.fab)
+                .setPrimaryText(R.string.tutorialFabPrimaryText)
+                .setSecondaryText(R.string.tutorialFabSecondaryText)
+                .show()
     }
 }
