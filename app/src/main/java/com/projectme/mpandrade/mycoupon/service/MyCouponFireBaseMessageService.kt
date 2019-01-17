@@ -23,7 +23,7 @@ class MyCouponFireBaseMessageService : FirebaseMessagingService() {
     }
 
     override fun onNewToken(token: String?) {
-        Log.d(TAG, "TOKEN: " + token ?: "vazio")
+        Log.d(TAG, "TOKEN: $token")
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {

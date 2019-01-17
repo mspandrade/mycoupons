@@ -55,7 +55,7 @@ class CouponItemController(view: View) {
 
         val shape = ContextCompat.getDrawable(context, R.drawable.background_image_animated_vector)!!
 
-        val anim = (shape as Animatable).start()
+        (shape as Animatable).start()
 
         return shape
     }

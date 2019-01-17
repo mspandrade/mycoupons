@@ -1,5 +1,6 @@
 package com.projectme.mpandrade.mycoupon
 
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
 
             if (!hasCameraPermission) {
-                ActivityCompat.requestPermissions(this,  arrayOf(android.Manifest.permission.CAMERA), cameraRequestCode)
+                ActivityCompat.requestPermissions(this,  arrayOf(Manifest.permission.CAMERA), cameraRequestCode)
             } else {
                 openQRCode()
             }
