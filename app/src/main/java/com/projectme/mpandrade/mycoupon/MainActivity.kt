@@ -14,7 +14,6 @@ import com.projectme.mpandrade.mycoupon.fragment.CompleteFragment
 import com.projectme.mpandrade.mycoupon.fragment.CouponsFragment
 import com.projectme.mpandrade.mycoupon.fragment.FavoriteFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt
 
 
 
@@ -45,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                 openQRCode()
             }
         }
-        initTutorial()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -85,15 +83,5 @@ class MainActivity : AppCompatActivity() {
     private fun openQRCode() {
         val intent = Intent(this, CouponQRCodeReaderActivity::class.java)
         startActivity(intent)
-    }
-
-    private fun initTutorial() {
-
-        MaterialTapTargetPrompt.Builder(this)
-                .setBackgroundColour(ContextCompat.getColor(this, R.color.colorSecondary))
-                .setTarget(R.id.fab)
-                .setPrimaryText(R.string.tutorialFabPrimaryText)
-                .setSecondaryText(R.string.tutorialFabSecondaryText)
-                .show()
     }
 }
