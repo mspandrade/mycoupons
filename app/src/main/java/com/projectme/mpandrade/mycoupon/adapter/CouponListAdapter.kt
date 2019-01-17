@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.projectme.mpandrade.mycoupon.R
 import com.projectme.mpandrade.mycoupon.adapter.controller.CouponItemController
@@ -49,7 +50,23 @@ class CouponListAdapter(
         }
 
         controller.favoriteArea.setOnClickListener {
-            Toast.makeText(viewHolder.itemView.context, "Todo", Toast.LENGTH_SHORT).show()
+
+            coupon.favorite = !coupon.favorite
+
+            if (coupon.favorite) {
+
+                controller.favoriteIcon.visibility = View.VISIBLE
+                controller.favoriteIcon.startAnimation(
+                        AnimationUtils.loadAnimation(controller.context, R.anim.coupon_starred_animation)
+                )
+
+            } else {
+
+                controller.favoriteIcon.startAnimation(
+                        AnimationUtils.loadAnimation(controller.context, R.anim.coupon_not_starred_animation)
+                )
+                controller.favoriteIcon.visibility = View.GONE
+            }
         }
     }
 

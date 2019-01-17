@@ -1,6 +1,7 @@
 package com.projectme.mpandrade.mycoupon.adapter.controller
 
 import android.content.Context
+import android.graphics.ColorFilter
 import android.graphics.drawable.*
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat
 import android.support.v4.content.ContextCompat
@@ -42,6 +43,7 @@ class CouponItemController(view: View) {
     private val statusArea: LinearLayout = view.findViewById(R.id.statusArea)
 
     val favoriteIcon: ImageView = view.findViewById(R.id.favoriteIcon)
+
     val completeIcon: ImageView = view.findViewById(R.id.completeIcon)
     val receiveButton: Button = view.findViewById(R.id.receive)
     val favoriteArea: FrameLayout = view.findViewById(R.id.favoriteArea)
@@ -49,7 +51,7 @@ class CouponItemController(view: View) {
 
     private val imageView: ImageView = view.findViewById(R.id.cardImage)
 
-    private val context get() = cardView.context
+    val context get() = cardView.context
 
     private fun loadingImage() : Drawable {
 
@@ -93,14 +95,9 @@ class CouponItemController(view: View) {
 
     fun setIsFavorite(favorite: Boolean) {
 
-        favoriteIcon.setImageResource( if (favorite) {
-
-            R.drawable.ic_favorite
-
-        } else {
-
-            R.drawable.ic_notfavorite
-        })
+        if (!favorite) {
+            favoriteIcon.visibility = View.GONE
+        }
     }
 
     val transitionsElements get() : Array<Pair<View, String>> {

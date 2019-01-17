@@ -11,7 +11,7 @@ data class CouponData (
         val completeIn: Int,
         val dueDate: Date,
         val image: String,
-        val favorite: Boolean
+        var favorite: Boolean
 
 )  : Serializable {
 
