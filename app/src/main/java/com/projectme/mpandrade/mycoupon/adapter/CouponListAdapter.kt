@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference
 
 
 class CouponListAdapter(
-        private val coupons: List<CouponData>,
+        val coupons: MutableList<CouponData>,
         private val listener: WeakReference<Listener>
 
 ) : RecyclerView.Adapter<CouponListAdapter.ViewHolder>() {
@@ -21,6 +21,9 @@ class CouponListAdapter(
     interface Listener {
 
         fun onCardCouponClicked(coupon: CouponData, controller: CouponItemController)
+
+        fun onCouponFavorite(coupon: CouponData) {}
+        fun onCouponUnFavorite(coupon: CouponData) {}
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -59,6 +62,7 @@ class CouponListAdapter(
                 controller.favoriteIcon.startAnimation(
                         AnimationUtils.loadAnimation(controller.context, R.anim.coupon_starred_animation)
                 )
+                listener.get()?.onCouponFavorite(coupon)
 
             } else {
 
@@ -66,6 +70,8 @@ class CouponListAdapter(
                         AnimationUtils.loadAnimation(controller.context, R.anim.coupon_not_starred_animation)
                 )
                 controller.favoriteIcon.visibility = View.GONE
+
+                listener.get()?.onCouponUnFavorite(coupon)
             }
         }
     }

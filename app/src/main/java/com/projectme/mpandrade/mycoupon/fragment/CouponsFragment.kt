@@ -3,34 +3,38 @@ package com.projectme.mpandrade.mycoupon.fragment
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
-import android.support.v4.util.Pair
-import android.support.v7.widget.CardView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.projectme.mpandrade.mycoupon.CouponActivity
 import com.projectme.mpandrade.mycoupon.R
 import com.projectme.mpandrade.mycoupon.adapter.CouponListAdapter
 import com.projectme.mpandrade.mycoupon.adapter.controller.CouponItemController
 import com.projectme.mpandrade.mycoupon.data.view.CouponData
+import com.projectme.mpandrade.mycoupon.event.FavoriteCouponEvent
+import com.projectme.mpandrade.mycoupon.event.UnFavoriteCouponEvent
 import com.projectme.mpandrade.mycoupon.provider.CouponListProvider
 import java.lang.ref.WeakReference
 import java.util.*
+import org.greenrobot.eventbus.EventBus
+
+
 
 open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.Listener {
 
     private var rcCoupon: RecyclerView? = null
 
-    override val couponList: List<CouponData> get() {
+    val adapter: CouponListAdapter? get() = rcCoupon?.adapter as? CouponListAdapter
+
+    override val couponList: MutableList<CouponData> get() {
 
         return mutableListOf(
                 CouponData(
+                        1,
                         "Habbibs",
                 "Na compra de 10 esfirras ganha-se 1",
                 10, 15,
@@ -39,6 +43,7 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
                         true),
 
                 CouponData(
+                        2,
                         "McDonald's",
                         "Na compra de 1 lanche ganha-se outro",
                         0, 1,
@@ -47,6 +52,7 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
                         false),
 
                 CouponData(
+                        3,
                         "Divino Fogão",
                         "A cada 5 refeições ganha-se um brinde",
                         5, 5,
@@ -55,6 +61,7 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
                         true),
 
                 CouponData(
+                        4,
                         "Burguer King",
                         "Na compra de 1 lanche ganha-se outro",
                         0, 1,
@@ -63,6 +70,7 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
                         false),
 
                 CouponData(
+                        5,
                         "Pizza Hut",
                         "Na compra de duas pizzas ganha-se um refrigerante",
                         0, 2,
@@ -71,6 +79,7 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
                         false),
 
                 CouponData(
+                        6,
                         "KFC",
                         "Na compra de 1 lanche ganha-se outro",
                         0, 1,
@@ -108,5 +117,13 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
         intent.putExtra(CouponActivity.PARAM_COUPON, coupon)
 
         activity?.startActivityFromFragment(this, intent, 200, options.toBundle())
+    }
+
+    override fun onCouponFavorite(coupon: CouponData) {
+        EventBus.getDefault().post(FavoriteCouponEvent(coupon))
+    }
+
+    override fun onCouponUnFavorite(coupon: CouponData) {
+        EventBus.getDefault().post(UnFavoriteCouponEvent(coupon))
     }
 }

@@ -5,6 +5,7 @@ import java.util.*
 
 data class CouponData (
 
+        val id: Long,
         val companyName: String,
         val description: String,
         val status: Int,
