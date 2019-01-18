@@ -4,8 +4,8 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.graphics.PointF
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.appcompat.app.AppCompatActivity
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView
 import kotlinx.android.synthetic.main.activity_coupon_qrcode_reader.*
 

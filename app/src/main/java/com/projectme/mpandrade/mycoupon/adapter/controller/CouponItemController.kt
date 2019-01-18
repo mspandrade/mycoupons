@@ -1,11 +1,10 @@
 package com.projectme.mpandrade.mycoupon.adapter.controller
 
 import android.graphics.drawable.*
-import android.support.v4.content.ContextCompat
-import android.support.v4.util.Pair
-import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.*
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -13,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.projectme.mpandrade.mycoupon.R
 import com.projectme.mpandrade.mycoupon.data.view.CouponData
 import java.util.*
+import androidx.core.util.Pair as PairX
 
 class CouponItemController(view: View) {
 
@@ -106,11 +106,11 @@ class CouponItemController(view: View) {
 
     }
 
-    val transitionsElements get() : Array<Pair<View, String>> {
+    val transitionsElements get() : Array<PairX<View, String>> {
 
-        return arrayOf<Pair<View, String>>(
-                Pair(imageView, imageView.transitionName),
-                Pair(cardView, cardView.transitionName)
+        return arrayOf<PairX<View, String>>(
+                PairX(imageView, imageView.transitionName),
+                PairX(cardView, cardView.transitionName)
         )
     }
 

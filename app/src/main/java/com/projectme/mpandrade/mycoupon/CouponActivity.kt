@@ -1,8 +1,8 @@
 package com.projectme.mpandrade.mycoupon
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.projectme.mpandrade.mycoupon.adapter.controller.CouponItemController
 import com.projectme.mpandrade.mycoupon.data.view.CouponData

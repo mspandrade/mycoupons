@@ -3,13 +3,13 @@ package com.projectme.mpandrade.mycoupon.fragment
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.projectme.mpandrade.mycoupon.CouponActivity
 import com.projectme.mpandrade.mycoupon.R
 import com.projectme.mpandrade.mycoupon.adapter.CouponListAdapter
