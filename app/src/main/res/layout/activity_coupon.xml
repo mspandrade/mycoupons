@@ -16,10 +16,11 @@
             android:id="@+id/couponImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/imageCouponDescription"
             android:minHeight="300dp"
             android:scaleType="centerCrop"
             android:transitionName="@string/transitionImageCardCoupon"
-            app:srcCompat="@drawable/shape_rectangle" />
+            app:srcCompat="@drawable/background_shape_rectangle" />
 
         <View
             android:id="@+id/divider2"
@@ -37,7 +38,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="4dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -45,43 +46,87 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:minHeight="40dp"
                     android:text="@string/companyNameExample"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textSize="30sp" />
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:textSize="24sp" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3">
+                    android:layout_weight="2">
 
-                    <TextView
-                        android:id="@+id/status"
+                    <LinearLayout
+                        android:id="@+id/statusArea"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/statusContent"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:textSize="18sp"
-                        android:gravity="center"/>
+                        android:layout_height="40dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/statusTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/status"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/statusContent"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                            android:textSize="18sp" />
+                    </LinearLayout>
 
                     <Button
                         android:id="@+id/receive"
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/background_receive_button"
                         android:text="@string/receive"
                         android:textAlignment="center"
-                        android:background="@drawable/background_receive_button"
                         android:textColor="@color/receiveTextButtonColor"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                 </FrameLayout>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dueDate"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/dueDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/dueDateUndefined"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/couponDescriptionExample"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
                 android:textSize="14sp" />
 
             <View

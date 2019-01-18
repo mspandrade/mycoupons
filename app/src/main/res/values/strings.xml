@@ -5,7 +5,7 @@
     <string name="complete">completos</string>
     <string name="configuration">Configurações</string>
     <string name="search">Buscar</string>
-    <string name="status">status:</string>
+    <string name="status">adquiridos:</string>
     <string name="dueDate">vencimento em:</string>
     <string name="companyNameExample">Company Name</string>
     <string name="couponDescriptionExample">A description that define you coupon an the pride by conclusion favorite. Finally you must not put a text too long.</string>
@@ -17,15 +17,18 @@
     <string name="statusContent">%1$d / %2$d</string>
     <string name="receive">receber</string>
 
+    <string name="dueDateDatePattern">%1$te/%1$tm/%1$tY</string>
+    <string name="dueDateUndefined">sem prazo</string>
+
     <!-- transitions -->
     <string name="transitionCardCoupon">transitionCardCoupon</string>
     <string name="transitionImageCardCoupon">transitionImageCardCoupon</string>
     <string name="transitionCompanyNameCardCoupon">transitionCompanyNameCardCoupon</string>
     <string name="transitionDescriptionCardCoupon">transitionDescriptionCardCoupon</string>
 
-
-    <!-- tutorial -->
-    <string name="tutorialFabSecondaryText">Para adicionar um novo cupom ou incluir um uso a ele basta apertar aqui.</string>
-    <string name="tutorialFabPrimaryText">Adicionando um cupom</string>
+    <!-- image descriptions -->
+    <string name="imageCouponDescription">Imagem no cupom</string>
+    <string name="imageCompleteIconDescription">Imagem de um celo que indica que o cupom está completo</string>
+    <string name="imageFavoriteIconDescription">Imagem de uma estrela para indicar botao de favoritar ou desfavoritar</string>
 
 </resources>

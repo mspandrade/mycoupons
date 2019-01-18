@@ -35,6 +35,7 @@ class CouponActivity : AppCompatActivity() {
 
         initImageCoupon()
         initStatus()
+        initDueDate()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -58,9 +59,18 @@ class CouponActivity : AppCompatActivity() {
             status.text = getString(R.string.statusContent, coupon.status, coupon.completeIn)
         } else {
 
-            status.visibility = View.GONE
+            statusArea.visibility = View.GONE
             receive.visibility = View.VISIBLE
         }
 
+    }
+
+    private fun initDueDate() {
+
+        dueDate.text =  if (coupon.dueDate == null) {
+            getString(R.string.dueDateUndefined)
+        } else {
+            getString(R.string.dueDateDatePattern).format(coupon.dueDate)
+        }
     }
 }

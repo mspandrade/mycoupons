@@ -1,209 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardCoupon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_margin="8dp"
+        android:transitionName="@string/transitionCardCoupon"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardCoupon"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:transitionName="@string/transitionCardCoupon"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            app:cardUseCompatPadding="true">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="108dp"
+                android:baselineAligned="false">
 
                 <LinearLayout
-                    android:layout_width="match_parent" android:baselineAligned="false" 
-                    android:layout_height="108dp">
+                    android:layout_width="126dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="126dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/cardImage"
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:scaleType="centerCrop"
-                            android:transitionName="@string/transitionImageCardCoupon" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/cardImage"
+                        android:layout_width="120dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/companyName"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/companyNameExample"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                android:textSize="18sp"
-                                android:layout_weight="1"
-                                android:transitionName="@string/transitionCompanyNameCardCoupon"/>
-
-                            <ImageView
-                                android:id="@+id/completeIcon"
-                                android:layout_width="match_parent"
-                                android:layout_height="25dp"
-                                app:srcCompat="@drawable/ic_coupon_complete"
-                                android:paddingEnd="5dp"
-                                android:paddingStart="0dp"
-                                android:layout_weight="4"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/description"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="@string/couponDescriptionExample"
-                            android:textSize="12sp"
-                            android:transitionName="transitionDescriptionCardCoupon"/>
-
-                    </LinearLayout>
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/imageCouponDescription"
+                        android:scaleType="centerCrop"
+                        android:transitionName="@string/transitionImageCardCoupon" />
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="?android:attr/listDivider" />
-
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     android:padding="8dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:baselineAligned="false">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        <FrameLayout
+                        <TextView
+                            android:id="@+id/companyName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2">
+                            android:layout_weight="1"
+                            android:text="@string/companyNameExample"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                            android:textSize="18sp"
+                            android:transitionName="@string/transitionCompanyNameCardCoupon" />
 
-                            <LinearLayout
-                                android:id="@+id/statusArea"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="start"
-                                    android:text="@string/status"
-                                    android:textAppearance="@style/TextAppearance.Design.HelperText"
-                                    android:textSize="12sp" />
-
-                                <TextView
-                                    android:id="@+id/status"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_vertical"
-                                    android:text="@string/statusContent"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                    android:textSize="12sp" />
-
-                            </LinearLayout>
-
-                            <Button
-                                android:id="@+id/receive"
-                                android:layout_width="match_parent"
-                                android:layout_height="28dp"
-                                android:text="@string/receive"
-                                android:textAlignment="center"
-                                android:layout_marginEnd="30dp"
-                                android:background="@drawable/background_receive_button"
-                                android:textColor="@color/receiveTextButtonColor"
-                                android:visibility="gone"/>
-
-                        </FrameLayout>
-
-                        <LinearLayout
+                        <ImageView
+                            android:id="@+id/completeIcon"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="start"
-                                android:text="@string/dueDate"
-                                android:textAppearance="@style/TextAppearance.Design.HelperText"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:id="@+id/dueDate"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:text="12/10/2019"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-
-                        <FrameLayout
-                            android:id="@+id/favoriteArea"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3">
-
-                            <ImageView
-                                android:id="@+id/notFavoriteIcon"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:tint="@color/notFavoriteIconCard"
-                                app:srcCompat="@drawable/ic_favorite"
-                                android:padding="6dp"/>
-
-                            <ImageView
-                                android:id="@+id/favoriteIcon"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_favorite"
-                                android:padding="6dp"/>
-
-                        </FrameLayout>
+                            android:layout_height="25dp"
+                            android:layout_weight="4"
+                            android:contentDescription="@string/imageCompleteIconDescription"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="5dp"
+                            app:srcCompat="@drawable/ic_coupon_complete" />
 
                     </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/couponDescriptionExample"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
+                        android:textSize="12sp"
+                        android:transitionName="transitionDescriptionCardCoupon" />
+
                 </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:padding="8dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <LinearLayout
+                        android:id="@+id/statusArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="@string/status"
+                            android:textAppearance="@style/TextAppearance.Design.HelperText"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="@string/statusContent"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/receive"
+                        android:layout_width="match_parent"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="30dp"
+                        android:background="@drawable/background_receive_button"
+                        android:text="@string/receive"
+                        android:textAlignment="center"
+                        android:textColor="@color/receiveTextButtonColor"
+                        android:visibility="gone" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/dueDate"
+                        android:textAppearance="@style/TextAppearance.Design.HelperText"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/dueDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/dueDateUndefined"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/favoriteArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+
+                    <ImageView
+                        android:id="@+id/notFavoriteIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/imageFavoriteIconDescription"
+                        android:padding="6dp"
+                        android:tint="@color/notFavoriteIconCard"
+                        app:srcCompat="@drawable/ic_favorite" />
+
+                    <ImageView
+                        android:id="@+id/favoriteIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/imageFavoriteIconDescription"
+                        android:padding="6dp"
+                        app:srcCompat="@drawable/ic_favorite" />
+
+                </FrameLayout>
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </LinearLayout>
 
-    </LinearLayout>
+    </android.support.v7.widget.CardView>
+
 </RelativeLayout>

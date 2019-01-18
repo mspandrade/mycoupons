@@ -10,7 +10,7 @@ data class CouponData (
         val description: String,
         val status: Int,
         val completeIn: Int,
-        val dueDate: Date,
+        val dueDate: Date?,
         val image: String,
         var favorite: Boolean
 

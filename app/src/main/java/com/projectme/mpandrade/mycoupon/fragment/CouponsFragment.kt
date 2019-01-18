@@ -38,7 +38,7 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
                         "Habbibs",
                 "Na compra de 10 esfirras ganha-se 1",
                 10, 15,
-                Date(),
+                null,
                 "http://propmark.com.br/static/upload/legacy/thumbs/2014/gtahabibs600.jpg",
                         true),
 

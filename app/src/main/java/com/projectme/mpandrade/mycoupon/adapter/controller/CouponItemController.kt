@@ -1,18 +1,10 @@
 package com.projectme.mpandrade.mycoupon.adapter.controller
 
-import android.content.Context
-import android.graphics.ColorFilter
 import android.graphics.drawable.*
-import android.support.graphics.drawable.AnimatedVectorDrawableCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
-import android.support.v4.widget.CircularProgressDrawable
 import android.support.v7.widget.CardView
 import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.view.animation.AnimationSet
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
@@ -20,6 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.projectme.mpandrade.mycoupon.R
 import com.projectme.mpandrade.mycoupon.data.view.CouponData
+import java.util.*
 
 class CouponItemController(view: View) {
 
@@ -30,7 +23,7 @@ class CouponItemController(view: View) {
 
         val requestOptions = RequestOptions()
                 .centerCrop()
-                .error(R.drawable.shape_rectangle)
+                .error(R.drawable.background_shape_rectangle)
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .priority(Priority.HIGH)
                 .override(IMAGE_WIDTH, IMAGE_HEIGHT)
@@ -39,6 +32,7 @@ class CouponItemController(view: View) {
     private val companyNameTextView: TextView = view.findViewById(R.id.companyName)
     private val descriptionTextView: TextView = view.findViewById(R.id.description)
     private val statusTextView: TextView = view.findViewById(R.id.status)
+    private val dueDateTextView: TextView = view.findViewById(R.id.dueDate)
 
     private val statusArea: LinearLayout = view.findViewById(R.id.statusArea)
 
@@ -98,6 +92,18 @@ class CouponItemController(view: View) {
         if (!favorite) {
             favoriteIcon.visibility = View.GONE
         }
+    }
+
+    fun setDueDate(dueDate: Date?) {
+
+        dueDateTextView.text =  if (dueDate == null) {
+
+            context.getString(R.string.dueDateUndefined)
+        } else {
+
+            context.getString(R.string.dueDateDatePattern).format(dueDate)
+        }
+
     }
 
     val transitionsElements get() : Array<Pair<View, String>> {

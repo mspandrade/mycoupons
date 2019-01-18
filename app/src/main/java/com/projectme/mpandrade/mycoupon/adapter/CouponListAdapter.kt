@@ -43,6 +43,7 @@ class CouponListAdapter(
         controller.setDescription(coupon.description)
         controller.setImage(coupon.image)
         controller.setIsFavorite(coupon.favorite)
+        controller.setDueDate(coupon.dueDate)
 
         controller.cardView.setOnClickListener {
             listener.get()?.onCardCouponClicked(coupon, controller)
