@@ -7,3 +7,5 @@ interface CouponEvent
 data class FavoriteCouponEvent(val couponData: CouponData): CouponEvent
 
 data class UnFavoriteCouponEvent(val couponData: CouponData): CouponEvent
+
+data class DeletedCouponEvent(val couponData: CouponData): CouponEvent

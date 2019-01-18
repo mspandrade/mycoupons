@@ -1,12 +1,21 @@
 package com.projectme.mpandrade.mycoupon
 
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.projectme.mpandrade.mycoupon.adapter.controller.CouponItemController
 import com.projectme.mpandrade.mycoupon.data.view.CouponData
+import com.projectme.mpandrade.mycoupon.event.DeletedCouponEvent
+import com.projectme.mpandrade.mycoupon.event.FavoriteCouponEvent
+import com.projectme.mpandrade.mycoupon.event.UnFavoriteCouponEvent
 import kotlinx.android.synthetic.main.activity_coupon.*
+import org.greenrobot.eventbus.EventBus
 
 class CouponActivity : AppCompatActivity() {
 
@@ -18,15 +27,15 @@ class CouponActivity : AppCompatActivity() {
     private lateinit var coupon: CouponData
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coupon)
-        setSupportActionBar(toolbar)
 
-        title = ""
+        title = getString(R.string.coupon)
 
-        supportActionBar?.setBackgroundDrawable(getDrawable(R.drawable.gradient_toolbar_background))
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.elevation = 6F
 
         coupon = intent.getSerializableExtra(PARAM_COUPON) as CouponData
 
@@ -40,6 +49,71 @@ class CouponActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.menu_coupon, menu)
+
+        val item = menu?.findItem(R.id.favorite)
+
+        if (!coupon.favorite) {
+
+            item?.icon = getDrawable(R.drawable.ic_not_favorite_coupon)
+        }
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item?.itemId) {
+
+            R.id.favorite -> {
+
+                coupon.favorite = !coupon.favorite
+
+                item.icon = getDrawable(
+
+                    if (coupon.favorite) {
+
+                        EventBus.getDefault().post(FavoriteCouponEvent(coupon))
+
+                        R.drawable.ic_favorite_coupon
+                    } else {
+
+                        EventBus.getDefault().post(UnFavoriteCouponEvent(coupon))
+                        R.drawable.ic_not_favorite_coupon
+                    }
+                )
+            }
+
+            R.id.delete -> {
+
+                val dialog = AlertDialog.Builder(this)
+                                    .setMessage(R.string.alertDeleteCouponMessage)
+                                    .setNegativeButton(R.string.alertPositiveResponse) { _, _ ->
+
+                                        EventBus.getDefault().post(DeletedCouponEvent(coupon))
+                                        onSupportNavigateUp()
+                                    }
+                                    .setPositiveButton(R.string.alertNegativeResponse) { _, _ -> }
+                                    .setCancelable(true)
+                                    .create()
+
+                dialog?.show()
+
+                dialog?.getButton(AlertDialog.BUTTON_POSITIVE)
+                        ?.setTextColor(ContextCompat.getColor(this, R.color.textPositiveColor))
+            }
+
+            android.R.id.home -> onSupportNavigateUp()
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
         return true
     }
 

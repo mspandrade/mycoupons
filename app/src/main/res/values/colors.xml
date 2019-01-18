@@ -23,4 +23,7 @@
 
     <color name="colorBackgroundImagePulse">#e1e1e1</color>
     <color name="colorBackgroundImage">#c2c0c0</color>
+
+    <color name="textDisable">#999999</color>
+    <color name="textPositiveColor">#4285F4</color>
 </resources>

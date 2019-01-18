@@ -85,7 +85,16 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
                         0, 1,
                         Date(),
                         "http://guiadopreço.com/wp-content/uploads/2017/01/kfc--e1483623133166.jpg",
-                        true)
+                        true),
+
+                CouponData(
+                        6,
+                        "SUBWAY",
+                        "Na compra de 1 lanche ganha-se outro",
+                        0, 1,
+                        Date(),
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaOHg66n04wCfwuF4jLGneerMWxXDA7VBkqQ0lXXhhN15vEAaNmA",
+                        false)
         )
     }
 
