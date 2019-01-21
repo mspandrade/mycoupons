@@ -14,89 +14,31 @@ import com.projectme.mpandrade.mycoupon.CouponActivity
 import com.projectme.mpandrade.mycoupon.R
 import com.projectme.mpandrade.mycoupon.adapter.CouponListAdapter
 import com.projectme.mpandrade.mycoupon.adapter.controller.CouponItemController
+import com.projectme.mpandrade.mycoupon.data.service.CouponService
 import com.projectme.mpandrade.mycoupon.data.view.CouponData
+import com.projectme.mpandrade.mycoupon.event.DeletedCouponEvent
 import com.projectme.mpandrade.mycoupon.event.FavoriteCouponEvent
 import com.projectme.mpandrade.mycoupon.event.UnFavoriteCouponEvent
 import com.projectme.mpandrade.mycoupon.provider.CouponListProvider
+import io.reactivex.disposables.Disposable
 import java.lang.ref.WeakReference
 import java.util.*
 import org.greenrobot.eventbus.EventBus
-
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.Listener {
 
     private var rcCoupon: RecyclerView? = null
 
+    private val coupons = mutableListOf<CouponData>()
+    override val couponList get() = coupons
+
     val adapter: CouponListAdapter? get() = rcCoupon?.adapter as? CouponListAdapter
+    private val couponService = if (context != null) CouponService(context!!) else null
 
-    override val couponList: MutableList<CouponData> get() {
-
-        return mutableListOf(
-                CouponData(
-                        1,
-                        "Habbibs",
-                "Na compra de 10 esfirras ganha-se 1",
-                10, 15,
-                null,
-                "http://propmark.com.br/static/upload/legacy/thumbs/2014/gtahabibs600.jpg",
-                        true),
-
-                CouponData(
-                        2,
-                        "McDonald's",
-                        "Na compra de 1 lanche ganha-se outro",
-                        0, 1,
-                        Date(),
-                        "https://geekpublicitario.com.br/wp-content/uploads/2016/03/promocao-big-tasty-2-em-1-mcdonalds-blog-geek-publicitario.jpg",
-                        false),
-
-                CouponData(
-                        3,
-                        "Divino Fogão",
-                        "A cada 5 refeições ganha-se um brinde",
-                        5, 5,
-                        Date(),
-                        "https://anrbrasil.org.br/wp-content/uploads/2018/02/Post_03b_Ferdinand_600x600px.png",
-                        true),
-
-                CouponData(
-                        4,
-                        "Burguer King",
-                        "Na compra de 1 lanche ganha-se outro",
-                        0, 1,
-                        Date(),
-                        "https://static.pelando.com.br/live/threads/thread_full_screen/default/248242_1.jpg",
-                        false),
-
-                CouponData(
-                        5,
-                        "Pizza Hut",
-                        "Na compra de duas pizzas ganha-se um refrigerante",
-                        0, 2,
-                        Date(),
-                        "https://i.pinimg.com/originals/cf/de/ab/cfdeabd2b571016773f3c68edfbb8262.jpg",
-                        false),
-
-                CouponData(
-                        6,
-                        "KFC",
-                        "Na compra de 1 lanche ganha-se outro",
-                        0, 1,
-                        Date(),
-                        "http://guiadopreço.com/wp-content/uploads/2017/01/kfc--e1483623133166.jpg",
-                        true),
-
-                CouponData(
-                        6,
-                        "SUBWAY",
-                        "Na compra de 1 lanche ganha-se outro",
-                        0, 1,
-                        Date(),
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaOHg66n04wCfwuF4jLGneerMWxXDA7VBkqQ0lXXhhN15vEAaNmA",
-                        false)
-        )
-    }
+    private var disposableRequisition : Disposable? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -112,6 +54,13 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
 
         rcCoupon?.layoutManager = LinearLayoutManager(view.context)
         rcCoupon?.adapter = CouponListAdapter(couponList, WeakReference(this))
+
+        disposableRequisition = couponService?.getAll()?.subscribe {
+
+            coupons.clear()
+            coupons.addAll(it)
+            adapter?.notifyDataSetChanged()
+        }
     }
 
     override fun onCardCouponClicked(coupon: CouponData, controller: CouponItemController) {
@@ -134,5 +83,12 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
 
     override fun onCouponUnFavorite(coupon: CouponData) {
         EventBus.getDefault().post(UnFavoriteCouponEvent(coupon))
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onDeletedCouponEvent(deletedCouponEvent: DeletedCouponEvent) {
+        val index = couponList.indexOfFirst { deletedCouponEvent.couponData.id == it.id }
+        couponList.removeAt(index)
+        adapter?.notifyDataSetChanged()
     }
 }
