@@ -10,6 +10,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.projectme.mpandrade.mycoupon.CouponActivity
 import com.projectme.mpandrade.mycoupon.R
 import com.projectme.mpandrade.mycoupon.adapter.CouponListAdapter
@@ -31,11 +32,12 @@ import io.reactivex.disposables.CompositeDisposable
 
 
 
-open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.Listener {
+open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.Listener, SwipeRefreshLayout.OnRefreshListener {
 
     private var rcCoupon: RecyclerView? = null
     private val coupons = mutableListOf<CouponData>()
     private var internalCouponService: CouponService? = null
+    private var swipeContainer: SwipeRefreshLayout? = null
 
     val adapter: CouponListAdapter? get() = rcCoupon?.adapter as? CouponListAdapter
 
@@ -43,7 +45,7 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
 
     override val compositeDisposable = CompositeDisposable()
     override val couponList get() = coupons
-    override val couponsObservable: Observable<List<CouponData>>? get() = couponService?.getAll()
+    override val couponsObservable: Observable<List<CouponData>>? get() = couponService?.getAll(0 , 5)
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -56,25 +58,33 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
         super.onViewCreated(view, savedInstanceState)
 
         rcCoupon = view.findViewById(R.id.rcCoupons)
-
         rcCoupon?.layoutManager = LinearLayoutManager(view.context)
         rcCoupon?.adapter = CouponListAdapter(couponList, WeakReference(this))
 
+        swipeContainer = view.findViewById(R.id.swipeContainer)
+        swipeContainer?.setOnRefreshListener(this)
+
         if (context != null) {
-
             internalCouponService = CouponService(context!!)
-
-            val disposable = couponsObservable?.subscribeOn(Schedulers.io())
-                    ?.observeOn(AndroidSchedulers.mainThread())
-                    ?.subscribe {
-
-                        coupons.clear()
-                        coupons.addAll(it)
-                        adapter?.notifyDataSetChanged()
-                    }
-
-            if (disposable != null) compositeDisposable.add(disposable)
+            onRefresh()
         }
+    }
+
+    override fun onRefresh() {
+
+        swipeContainer?.isRefreshing = true
+
+        val disposable = couponsObservable?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe {
+
+                    coupons.clear()
+                    coupons.addAll(it)
+                    adapter?.notifyDataSetChanged()
+                    swipeContainer?.isRefreshing = false
+                }
+
+        if (disposable != null) compositeDisposable.add(disposable)
     }
 
     override fun onCardCouponClicked(coupon: CouponData, controller: CouponItemController) {
