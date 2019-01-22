@@ -45,7 +45,7 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
 
     override val compositeDisposable = CompositeDisposable()
     override val couponList get() = coupons
-    override val couponsObservable: Observable<List<CouponData>>? get() = couponService?.getAll(0 , 5)
+    override val couponsObservable: Observable<List<CouponData>>? get() = couponService?.getAll()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -63,6 +63,7 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
 
         swipeContainer = view.findViewById(R.id.swipeContainer)
         swipeContainer?.setOnRefreshListener(this)
+        swipeContainer?.setColorSchemeResources(R.color.colorAccent)
 
         if (context != null) {
             internalCouponService = CouponService(context!!)

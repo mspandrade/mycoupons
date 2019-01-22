@@ -39,5 +39,10 @@
     <string name="imageCouponDescription">Imagem no cupom</string>
     <string name="imageCompleteIconDescription">Imagem de um celo que indica que o cupom está completo</string>
     <string name="imageFavoriteIconDescription">Imagem de uma estrela para indicar botao de favoritar ou desfavoritar</string>
+    <string name="imageArrowEmptyCoupon">Seta que indica aonde adiociona um cupom</string>
+
+    <!-- empty coupons message -->
+    <string name="emptyCouponsTitle">Não há cupons</string>
+    <string name="emptyCouponsMessage">Adicione apertando aqui</string>
 
 </resources>
