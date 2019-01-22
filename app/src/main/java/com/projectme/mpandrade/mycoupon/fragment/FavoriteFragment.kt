@@ -3,6 +3,7 @@ package com.projectme.mpandrade.mycoupon.fragment
 import com.projectme.mpandrade.mycoupon.data.view.CouponData
 import com.projectme.mpandrade.mycoupon.event.FavoriteCouponEvent
 import com.projectme.mpandrade.mycoupon.event.UnFavoriteCouponEvent
+import io.reactivex.Observable
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.ThreadMode
 import org.greenrobot.eventbus.Subscribe
@@ -11,10 +12,7 @@ import org.greenrobot.eventbus.Subscribe
 
 class FavoriteFragment : CouponsFragment() {
 
-    override val couponList: MutableList<CouponData>
-        get() = super.couponList.filter {
-            it.favorite
-        }.toMutableList()
+    override val couponsObservable: Observable<List<CouponData>>? get() = couponService?.getFavorites()
 
     override fun onStart() {
         super.onStart()

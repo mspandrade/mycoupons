@@ -20,25 +20,30 @@ import com.projectme.mpandrade.mycoupon.event.DeletedCouponEvent
 import com.projectme.mpandrade.mycoupon.event.FavoriteCouponEvent
 import com.projectme.mpandrade.mycoupon.event.UnFavoriteCouponEvent
 import com.projectme.mpandrade.mycoupon.provider.CouponListProvider
-import io.reactivex.disposables.Disposable
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import java.lang.ref.WeakReference
-import java.util.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import io.reactivex.disposables.CompositeDisposable
+
 
 
 open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.Listener {
 
     private var rcCoupon: RecyclerView? = null
-
     private val coupons = mutableListOf<CouponData>()
-    override val couponList get() = coupons
+    private var internalCouponService: CouponService? = null
 
     val adapter: CouponListAdapter? get() = rcCoupon?.adapter as? CouponListAdapter
-    private val couponService = if (context != null) CouponService(context!!) else null
 
-    private var disposableRequisition : Disposable? = null
+    override val couponService: CouponService? get() = internalCouponService
+
+    override val compositeDisposable = CompositeDisposable()
+    override val couponList get() = coupons
+    override val couponsObservable: Observable<List<CouponData>>? get() = couponService?.getAll()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -55,11 +60,20 @@ open class CouponsFragment : Fragment(), CouponListProvider, CouponListAdapter.L
         rcCoupon?.layoutManager = LinearLayoutManager(view.context)
         rcCoupon?.adapter = CouponListAdapter(couponList, WeakReference(this))
 
-        disposableRequisition = couponService?.getAll()?.subscribe {
+        if (context != null) {
 
-            coupons.clear()
-            coupons.addAll(it)
-            adapter?.notifyDataSetChanged()
+            internalCouponService = CouponService(context!!)
+
+            val disposable = couponsObservable?.subscribeOn(Schedulers.io())
+                    ?.observeOn(AndroidSchedulers.mainThread())
+                    ?.subscribe {
+
+                        coupons.clear()
+                        coupons.addAll(it)
+                        adapter?.notifyDataSetChanged()
+                    }
+
+            if (disposable != null) compositeDisposable.add(disposable)
         }
     }
 

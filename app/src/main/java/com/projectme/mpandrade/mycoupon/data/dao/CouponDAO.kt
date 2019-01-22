@@ -14,6 +14,12 @@ interface CouponDAO {
     @Query("SELECT * FROM $TABLE LIMIT :limit OFFSET :offset")
     fun getAll(offset: Int, limit: Int): List<Coupon>
 
+    @Query("SELECT * FROM $TABLE WHERE favorite = 1 LIMIT :limit OFFSET :offset")
+    fun getFavorites(offset: Int, limit: Int): List<Coupon>
+
+    @Query("SELECT * FROM $TABLE WHERE status >= complete_in LIMIT :limit OFFSET :offset")
+    fun getComplete(offset: Int, limit: Int): List<Coupon>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg coupon: Coupon)
 
