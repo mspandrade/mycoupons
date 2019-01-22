@@ -29,4 +29,7 @@ interface CouponDAO {
     @Query("DELETE FROM $TABLE")
     fun truncate()
 
+    @Update
+    fun update(coupon: Coupon)
+
 }

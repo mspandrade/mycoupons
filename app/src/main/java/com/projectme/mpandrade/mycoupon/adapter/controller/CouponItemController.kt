@@ -73,6 +73,7 @@ class CouponItemController(view: View) {
             statusTextView.text = context.getString(R.string.statusContent, coupon.status, coupon.completeIn)
 
             completeIcon.visibility = View.GONE
+            receiveButton.visibility = View.GONE
         } else {
 
             statusArea.visibility = View.GONE
@@ -93,8 +94,10 @@ class CouponItemController(view: View) {
 
         if (!favorite) {
             favoriteIcon.visibility = View.GONE
+            notFavoriteArea.visibility = View.VISIBLE
         } else {
             notFavoriteArea.visibility = View.GONE
+            favoriteIcon.visibility = View.VISIBLE
         }
     }
 

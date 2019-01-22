@@ -37,6 +37,10 @@ class CouponService(context: Context) : Service(context) {
         couponDAO.delete(CouponMapper.toModel(couponData))
     }
 
+    fun updateAsync(couponData: CouponData) {
+        AsyncTask.execute { couponDAO.update(CouponMapper.toModel(couponData)) }
+    }
+
     fun cleanStorage() {
         AsyncTask.execute { couponDAO.truncate() }
     }

@@ -22,8 +22,7 @@ class CouponListAdapter(
 
         fun onCardCouponClicked(coupon: CouponData, controller: CouponItemController)
 
-        fun onCouponFavorite(coupon: CouponData) {}
-        fun onCouponUnFavorite(coupon: CouponData) {}
+        fun onCouponFavorite(index: Int, coupon: CouponData) {}
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -65,7 +64,6 @@ class CouponListAdapter(
                 controller.favoriteIcon.startAnimation(
                         AnimationUtils.loadAnimation(controller.context, R.anim.coupon_starred_animation)
                 )
-                listener.get()?.onCouponFavorite(coupon)
 
             } else {
 
@@ -74,9 +72,8 @@ class CouponListAdapter(
                 )
                 controller.favoriteIcon.visibility = View.GONE
                 controller.notFavoriteArea.visibility = View.VISIBLE
-
-                listener.get()?.onCouponUnFavorite(coupon)
             }
+            listener.get()?.onCouponFavorite(position, coupon)
         }
     }
 
