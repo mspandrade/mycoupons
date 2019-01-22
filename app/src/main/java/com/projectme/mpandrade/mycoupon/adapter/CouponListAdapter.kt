@@ -60,6 +60,8 @@ class CouponListAdapter(
             if (coupon.favorite) {
 
                 controller.favoriteIcon.visibility = View.VISIBLE
+                controller.notFavoriteArea.visibility = View.GONE
+
                 controller.favoriteIcon.startAnimation(
                         AnimationUtils.loadAnimation(controller.context, R.anim.coupon_starred_animation)
                 )
@@ -71,6 +73,7 @@ class CouponListAdapter(
                         AnimationUtils.loadAnimation(controller.context, R.anim.coupon_not_starred_animation)
                 )
                 controller.favoriteIcon.visibility = View.GONE
+                controller.notFavoriteArea.visibility = View.VISIBLE
 
                 listener.get()?.onCouponUnFavorite(coupon)
             }

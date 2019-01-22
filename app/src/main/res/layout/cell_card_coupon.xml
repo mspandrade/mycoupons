@@ -177,7 +177,7 @@
                         android:contentDescription="@string/imageFavoriteIconDescription"
                         android:padding="6dp"
                         android:tint="@color/notFavoriteIconCard"
-                        app:srcCompat="@drawable/ic_favorite" />
+                        app:srcCompat="@drawable/ic_not_favorite" />
 
                     <ImageView
                         android:id="@+id/favoriteIcon"
