@@ -23,6 +23,12 @@
     <string name="favoriteItem">favoritar</string>
     <string name="delete">Excluir</string>
 
+    <string name="welcomeTitle">Bem-vindo(a) ao MeusCupons</string>
+    <string name="messageUsagePolicy">Leia a nossa %1$s. Toque em \"Concordar e continuar\" para aceitar os %2$s</string>
+    <string name="buttonUsagePolicyOk">Concordar e continuar</string>
+    <string name="privacyPolicy">Política de Privacidade</string>
+    <string name="serviceTerms">Termos de Serviço</string>
+
     <!-- alert messages -->
     <string name="alertDeleteCouponTitle">Atenção</string>
     <string name="alertDeleteCouponMessage">Deseja excluir esse cupom?</string>
@@ -36,6 +42,7 @@
     <string name="transitionDescriptionCardCoupon">transitionDescriptionCardCoupon</string>
 
     <!-- image descriptions -->
+    <string name="imageLogoDescription">Logo do aplicativo</string>
     <string name="imageCouponDescription">Imagem no cupom</string>
     <string name="imageCompleteIconDescription">Imagem de um celo que indica que o cupom está completo</string>
     <string name="imageFavoriteIconDescription">Imagem de uma estrela para indicar botao de favoritar ou desfavoritar</string>
