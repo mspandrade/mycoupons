@@ -15,10 +15,10 @@ class FavoriteFragment : BaseCouponFragment() {
     @Subscribe
     fun onFavoriteEvent(event: FavoriteCouponEvent) {
 
-        if (adapter?.coupons != null) {
-            adapter?.coupons?.add(event.couponData)
-            adapter?.notifyItemInserted(adapter?.itemCount!!)
-        }
+        coupons.add(event.couponData)
+        coupons.sortBy { it.id }
+
+        adapter?.notifyDataSetChanged()
     }
 
     @Subscribe

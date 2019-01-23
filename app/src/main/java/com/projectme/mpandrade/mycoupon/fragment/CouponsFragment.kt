@@ -16,12 +16,13 @@ open class CouponsFragment : BaseCouponFragment(), CouponListProvider, CouponLis
 
     @Subscribe
     fun onFavoriteEventArrived(event: FavoriteCouponEvent) {
+        couponService?.updateAsync(event.couponData)
         if (event.fragmentId != toString()) updateCouponInAdapter(event.couponData)
     }
 
     @Subscribe
     fun onUnFavoriteEventArrived(event: UnFavoriteCouponEvent) {
-
+        couponService?.updateAsync(event.couponData)
         if (event.fragmentId != toString()) updateCouponInAdapter(event.couponData)
     }
 

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.projectme.mpandrade.mycoupon.adapter.controller.CouponItemController
+import com.projectme.mpandrade.mycoupon.data.service.CouponService
 import com.projectme.mpandrade.mycoupon.data.view.CouponData
 import com.projectme.mpandrade.mycoupon.event.DeletedCouponEvent
 import com.projectme.mpandrade.mycoupon.event.FavoriteCouponEvent
@@ -24,6 +25,7 @@ class CouponActivity : AppCompatActivity() {
     }
 
     private lateinit var coupon: CouponData
+    private lateinit var couponService: CouponService
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -36,6 +38,7 @@ class CouponActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.elevation = 6F
 
+        couponService = CouponService(this)
         coupon = intent.getSerializableExtra(PARAM_COUPON) as CouponData
 
         companyName.text = coupon.companyName.toUpperCase()
@@ -93,6 +96,8 @@ class CouponActivity : AppCompatActivity() {
                 val dialog = AlertDialog.Builder(this)
                                     .setMessage(R.string.alertDeleteCouponMessage)
                                     .setNegativeButton(R.string.alertPositiveResponse) { _, _ ->
+
+                                        couponService.delete(coupon)
 
                                         EventBus.getDefault().post(DeletedCouponEvent(coupon))
                                         onSupportNavigateUp()

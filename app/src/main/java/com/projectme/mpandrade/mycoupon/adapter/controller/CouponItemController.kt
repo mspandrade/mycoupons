@@ -72,11 +72,15 @@ class CouponItemController(view: View) {
 
             statusTextView.text = context.getString(R.string.statusContent, coupon.status, coupon.completeIn)
 
+            statusArea.visibility = View.VISIBLE
+
             completeIcon.visibility = View.GONE
             receiveButton.visibility = View.GONE
         } else {
 
             statusArea.visibility = View.GONE
+
+            completeIcon.visibility = View.VISIBLE
             receiveButton.visibility = View.VISIBLE
         }
     }

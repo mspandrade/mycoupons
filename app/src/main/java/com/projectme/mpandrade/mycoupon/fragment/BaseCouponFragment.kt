@@ -116,7 +116,6 @@ abstract class BaseCouponFragment : Fragment(), CouponListProvider, CouponListAd
 
             UnFavoriteCouponEvent(coupon, toString())
         }
-        couponService?.updateAsync(coupon)
         EventBus.getDefault().post(event)
     }
 
@@ -125,14 +124,16 @@ abstract class BaseCouponFragment : Fragment(), CouponListProvider, CouponListAd
         val index = couponList.indexOfFirst { deletedCouponEvent.couponData.id == it.id }
         couponList.removeAt(index)
         adapter?.notifyDataSetChanged()
-        couponService?.delete(deletedCouponEvent.couponData)
     }
 
     protected fun updateCouponInAdapter(coupon: CouponData) {
 
         val position = coupons.indexOfFirst { coupon.id == it.id }
-        coupons[position] = coupon
-        adapter?.notifyItemChanged(position)
+
+        if (position >= 0) {
+            coupons[position] = coupon
+            adapter?.notifyItemChanged(position)
+        }
     }
 
 }

@@ -23,18 +23,18 @@ class CouponService(context: Context) : Service(context) {
         }
     }
 
-    fun getAll(offset: Int = 0, limit: Int = 15)
-            : Observable<List<CouponData>> = doSelect { couponDAO.getAll(offset, limit) }
+    fun getAll()
+            : Observable<List<CouponData>> = doSelect { couponDAO.getAll() }
 
-    fun getFavorites(offset: Int = 0, limit: Int = 15)
-            : Observable<List<CouponData>> = doSelect { couponDAO.getFavorites(offset, limit) }
+    fun getFavorites()
+            : Observable<List<CouponData>> = doSelect { couponDAO.getFavorites() }
 
-    fun getComplete(offset: Int = 0, limit: Int = 15)
-            : Observable<List<CouponData>> = doSelect { couponDAO.getComplete(offset, limit) }
+    fun getComplete()
+            : Observable<List<CouponData>> = doSelect { couponDAO.getComplete() }
 
     fun delete(couponData: CouponData) {
 
-        couponDAO.delete(CouponMapper.toModel(couponData))
+        AsyncTask.execute { couponDAO.delete(CouponMapper.toModel(couponData)) }
     }
 
     fun updateAsync(couponData: CouponData) {
