@@ -3,7 +3,7 @@
     package="com.projectme.mpandrade.mycoupon">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
         <activity
-            android:name="com.projectme.mpandrade.mycoupon.MainActivity"
+            android:name=".SplashScreenActivity"
+            android:theme="@style/AppTheme.FullScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,16 +25,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.projectme.mpandrade.mycoupon.CouponActivity"
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".CouponActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name="com.projectme.mpandrade.mycoupon.CouponQRCodeReaderActivity"
+            android:name=".CouponQRCodeReaderActivity"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <service android:name=".service.MyCouponFireBaseMessageService">
             <intent-filter>
@@ -45,15 +52,12 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_launcher" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
-
     </application>
 
 </manifest>
