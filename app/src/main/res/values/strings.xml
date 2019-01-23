@@ -29,6 +29,10 @@
     <string name="privacyPolicy">Política de Privacidade</string>
     <string name="serviceTerms">Termos de Serviço</string>
 
+    <string name="verifyNumber">Verifique seu número</string>
+    <string name="messageVerifyNumber">O MeusCupons enviará um SMS (tarifa da sua operadora podem ser aplicadas) para verificar seu número de telefone. Insira o código do seu país e seu número de telefone: </string>
+    <string name="hintVerifyNumber">seu número</string>
+
     <!-- alert messages -->
     <string name="alertDeleteCouponTitle">Atenção</string>
     <string name="alertDeleteCouponMessage">Deseja excluir esse cupom?</string>
