@@ -85,6 +85,7 @@
                     android:inputType="phone"
                     android:screenReaderFocusable="true"
                     android:selectAllOnFocus="true"
+                    android:maxLength="13"
                     android:textAppearance="@android:style/TextAppearance.Material.Widget.TextView" />
             </LinearLayout>
         </LinearLayout>
