@@ -11,6 +11,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        phoneNumber.requestFocus()
+
         next.setOnClickListener {
 
             val intent = Intent(this, MainActivity::class.java)
