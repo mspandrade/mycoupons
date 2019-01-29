@@ -33,11 +33,22 @@
     <string name="messageVerifyNumber">O MeusCupons enviará um SMS (tarifa da sua operadora podem ser aplicadas) para verificar seu número de telefone. Insira o código do seu país e seu número de telefone: </string>
     <string name="hintVerifyNumber">seu número</string>
 
+    <string name="countryChooseTitle">Selecione um país</string>
+    <string name="ddiMask">+%1$s</string>
+    <string name="defaultDDI">55</string>
+
     <!-- alert messages -->
     <string name="alertDeleteCouponTitle">Atenção</string>
     <string name="alertDeleteCouponMessage">Deseja excluir esse cupom?</string>
     <string name="alertPositiveResponse">Sim</string>
     <string name="alertNegativeResponse">Não</string>
+
+    <string name="alertMessageEmptyPhoneNumber">Por favor, insira seu número de telefone.</string>
+    <string name="alertMessageShortPhoneNumber">O número de telefone que você digitou é muito curto para o país: %1$s.\nInclua o coódigo de área (DDD) caso voceê não tenha colocado.</string>
+    <string name="alertMessageInvalidPhoneNumber">%1$s.\nnão é um número válido para o país %2$s.</string>
+    <string name="alertMessageSuccessPhoneNumber">Nós verificaremos o número:\n%1$s\nEsse número está correto ou deseja editá-lo?</string>
+
+    <string name="alertButtonEdit">editar</string>
 
     <!-- transitions -->
     <string name="transitionCardCoupon">transitionCardCoupon</string>

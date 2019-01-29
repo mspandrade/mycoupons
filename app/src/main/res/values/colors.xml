@@ -27,5 +27,7 @@
     <color name="textDisable">#999999</color>
     <color name="textPositiveColor">#4285F4</color>
 
+    <color name="colorCountryName">#333333</color>
+
     <color name="colorIconInput">#DADADA</color>
 </resources>
