@@ -50,11 +50,20 @@
 
     <string name="alertButtonEdit">editar</string>
 
+    <string name="titleVerifyCode">Verificar %1$s</string>
+    <string name="messageVerifyCode">Enviamos um código por SMS para \n%1$s. %2$s</string>
+    <string name="questionWrongPhoneNumber">Número errado?</string>
+    <string name="hintEditText">--- ---</string>
+    <string name="messageHintVerifyCode">Digite o código de 6 digitos</string>
+
+
+
     <!-- transitions -->
     <string name="transitionCardCoupon">transitionCardCoupon</string>
     <string name="transitionImageCardCoupon">transitionImageCardCoupon</string>
     <string name="transitionCompanyNameCardCoupon">transitionCompanyNameCardCoupon</string>
     <string name="transitionDescriptionCardCoupon">transitionDescriptionCardCoupon</string>
+
 
     <!-- image descriptions -->
     <string name="imageLogoDescription">Logo do aplicativo</string>

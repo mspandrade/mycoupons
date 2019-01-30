@@ -14,6 +14,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="16dp"
+        app:backgroundTint="@color/colorFab"
         app:srcCompat="@drawable/ic_more"
         app:layout_anchorGravity="right|bottom"
         app:layout_anchor="@id/viewPager"/>
