@@ -7,11 +7,19 @@ class UserPreference(context: Context) {
     companion object {
 
         const val PARAM_FIRE_BASE_AUTH_TOKEN = "fireBaseAuthToken"
+        const val PARAM_FIRE_BASE_AUTH_TOKEN_EXPIRATION = "fireBaseAuthTokenExpiration"
         const val PARAM_PHONE_NUMBER = "phoneNumber"
     }
 
     private val preference = Preference(context)
     private val sharedPreference get() = preference.sharedPreference
+
+    var fireBaseAuthTokenExpiration: Long
+
+        get() = sharedPreference.getLong(PARAM_FIRE_BASE_AUTH_TOKEN_EXPIRATION, 0)
+        set(value) {
+            putLong(PARAM_FIRE_BASE_AUTH_TOKEN_EXPIRATION, value)
+        }
 
     var fireBaseAuthToken: String?
 
@@ -30,6 +38,13 @@ class UserPreference(context: Context) {
     private fun putString(key: String, value: String?) {
         sharedPreference.edit().apply {
             this.putString(key, value)
+            this.apply()
+        }
+    }
+
+    private fun putLong(key: String, value: Long) {
+        sharedPreference.edit().apply {
+            this.putLong(key, value)
             this.apply()
         }
     }

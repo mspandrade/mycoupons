@@ -119,13 +119,22 @@ class VerifyCodeActivity : AppCompatActivity(), TextWatcher {
 
             if (it.isSuccessful) {
 
-                val userPreferences = UserPreference(this)
 
+                it.result?.user?.getIdToken(true)?.addOnCompleteListener { task ->
 
+                    if (task.isSuccessful) {
 
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                        val userPreferences = UserPreference(this)
+
+                        userPreferences.fireBaseAuthToken = task.result?.token
+                        userPreferences.fireBaseAuthTokenExpiration = task.result?.expirationTimestamp ?: 0
+                        userPreferences.phoneNumber = it.result?.user?.phoneNumber
+
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
 
             } else {
 
