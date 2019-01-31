@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.projectme.mpandrade.mycoupon.factory.SpannableFactory
+import com.projectme.mpandrade.mycoupon.provider.UserPreference
 import kotlinx.android.synthetic.main.activity_verify_code.*
 import java.util.concurrent.TimeUnit
 
@@ -117,6 +118,10 @@ class VerifyCodeActivity : AppCompatActivity(), TextWatcher {
             loading.visibility = View.GONE
 
             if (it.isSuccessful) {
+
+                val userPreferences = UserPreference(this)
+
+
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

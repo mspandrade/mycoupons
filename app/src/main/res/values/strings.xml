@@ -58,6 +58,8 @@
 
     <string name="loadingValidateMessage">Validando &#8230;</string>
 
+    <string name="preferenceFileKey">myCouponPreferenceFile</string>
+
     <!-- transitions -->
     <string name="transitionCardCoupon">transitionCardCoupon</string>
     <string name="transitionImageCardCoupon">transitionImageCardCoupon</string>
