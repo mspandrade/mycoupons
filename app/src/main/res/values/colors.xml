@@ -31,4 +31,6 @@
     <color name="colorCountryName">#333333</color>
 
     <color name="colorIconInput">#DADADA</color>
+
+    <color name="backgroundLoading">#b1ffffff</color>
 </resources>

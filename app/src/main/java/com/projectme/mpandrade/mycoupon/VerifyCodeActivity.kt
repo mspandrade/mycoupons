@@ -8,13 +8,18 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.text.style.StyleSpan
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.projectme.mpandrade.mycoupon.factory.SpannableFactory
 import kotlinx.android.synthetic.main.activity_verify_code.*
 import java.util.concurrent.TimeUnit
+
+
 
 class VerifyCodeActivity : AppCompatActivity(), TextWatcher {
 
@@ -23,7 +28,12 @@ class VerifyCodeActivity : AppCompatActivity(), TextWatcher {
         const val PARAM_PHONE_NUMBER = "paramPhoneNumber"
     }
 
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+    private var credential: PhoneAuthCredential? = null
+    private var resendToken: PhoneAuthProvider.ForceResendingToken? = null
     private var verificationId = ""
+
     private var phoneNumber = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +59,6 @@ class VerifyCodeActivity : AppCompatActivity(), TextWatcher {
                 TextView.BufferType.SPANNABLE
         )
 
-
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber,
                 60L,
@@ -65,9 +74,10 @@ class VerifyCodeActivity : AppCompatActivity(), TextWatcher {
 
         if (editable.length >= 6) {
 
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            loading.visibility = View.VISIBLE
+
+            val credential = this.credential ?: PhoneAuthProvider.getCredential(verificationId, code.text.toString())
+            signInUser(credential)
         }
     }
 
@@ -83,19 +93,44 @@ class VerifyCodeActivity : AppCompatActivity(), TextWatcher {
 
             override fun onVerificationFailed(exception: FirebaseException) { verificationFailed(exception) }
 
-            override fun onCodeSent(code: String, forceResendingToken: PhoneAuthProvider.ForceResendingToken) { codeSent(code) }
+            override fun onCodeSent(code: String, forceResendingToken: PhoneAuthProvider.ForceResendingToken) { codeSent(code, forceResendingToken) }
     }
 
     fun verificationCompleted(credential: PhoneAuthCredential) {
-
+        this.credential = credential
+        code.setText(credential.smsCode)
     }
 
     fun verificationFailed(exception: FirebaseException?) {
 
     }
 
-    fun codeSent(verificationId: String) {
+    fun codeSent(verificationId: String, resendToken: PhoneAuthProvider.ForceResendingToken) {
         this.verificationId = verificationId
+        this.resendToken = resendToken
+    }
+
+    private fun signInUser(credential: PhoneAuthCredential) {
+
+        auth.signInWithCredential(credential).addOnCompleteListener(this) {
+
+            loading.visibility = View.GONE
+
+            if (it.isSuccessful) {
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            } else {
+
+                Log.w("VerifyCode", "signInWithCredential:failure", it.exception)
+
+                if (it.exception is FirebaseAuthInvalidCredentialsException) {
+
+                }
+            }
+        }
     }
 
 }
