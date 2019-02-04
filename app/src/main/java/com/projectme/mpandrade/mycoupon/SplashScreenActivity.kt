@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.projectme.mpandrade.mycoupon.provider.UserPreference
+import java.util.*
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -13,12 +15,25 @@ class SplashScreenActivity : AppCompatActivity() {
 
         val handle = Handler()
 
+        val pref = UserPreference(this)
+
         handle.postDelayed({
 
-            val intent = Intent(this, WelcomeActivity::class.java)
+            val cls = if (
+                    pref.fireBaseAuthToken.isNullOrBlank() ||
+                    Date(pref.fireBaseAuthTokenExpiration).before(Date())) {
+
+                WelcomeActivity::class.java
+
+            } else {
+
+                MainActivity::class.java
+            }
+
+            val intent = Intent(this, cls)
             startActivity(intent)
             finish()
 
-        }, 2000L)
+        }, 500L)
     }
 }

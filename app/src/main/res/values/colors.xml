@@ -32,5 +32,5 @@
 
     <color name="colorIconInput">#DADADA</color>
 
-    <color name="backgroundLoading">#b1ffffff</color>
+    <color name="colorBackgroundLoading">#b1ffffff</color>
 </resources>

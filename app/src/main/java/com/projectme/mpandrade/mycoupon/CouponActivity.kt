@@ -106,9 +106,9 @@ class CouponActivity : AppCompatActivity() {
                                     .setCancelable(true)
                                     .create()
 
-                dialog?.show()
+                dialog.show()
 
-                dialog?.getButton(AlertDialog.BUTTON_POSITIVE)
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                         ?.setTextColor(ContextCompat.getColor(this, R.color.textPositiveColor))
             }
 

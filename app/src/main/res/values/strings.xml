@@ -56,7 +56,8 @@
     <string name="hintEditText">-  -  -  -  -  -</string>
     <string name="messageHintVerifyCode">Digite o código de 6 digitos</string>
 
-    <string name="loadingValidateMessage">Validando &#8230;</string>
+    <string name="loadingCodeMessage">Carregando</string>
+    <string name="loadingValidateMessage">Validando</string>
 
     <string name="preferenceFileKey">myCouponPreferenceFile</string>
 

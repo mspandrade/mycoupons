@@ -19,7 +19,10 @@ import com.projectme.mpandrade.mycoupon.factory.SpannableFactory
 import com.projectme.mpandrade.mycoupon.provider.UserPreference
 import kotlinx.android.synthetic.main.activity_verify_code.*
 import java.util.concurrent.TimeUnit
-
+import android.app.Activity
+import android.view.inputmethod.InputMethodManager
+import kotlinx.android.synthetic.main.cell_loading.*
+import java.util.*
 
 
 class VerifyCodeActivity : AppCompatActivity(), TextWatcher {
@@ -104,11 +107,26 @@ class VerifyCodeActivity : AppCompatActivity(), TextWatcher {
 
     fun verificationFailed(exception: FirebaseException?) {
 
+        Log.e("e", exception?.message)
+
+        loading.visibility = View.GONE
     }
 
     fun codeSent(verificationId: String, resendToken: PhoneAuthProvider.ForceResendingToken) {
+
+        loading.visibility = View.GONE
+
         this.verificationId = verificationId
         this.resendToken = resendToken
+    }
+
+    private fun hideKeyboard() {
+
+        val service = getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager
+
+        val view = currentFocus ?: View(this)
+
+        service?.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun signInUser(credential: PhoneAuthCredential) {
@@ -126,8 +144,10 @@ class VerifyCodeActivity : AppCompatActivity(), TextWatcher {
 
                         val userPreferences = UserPreference(this)
 
+                        hideKeyboard()
+
                         userPreferences.fireBaseAuthToken = task.result?.token
-                        userPreferences.fireBaseAuthTokenExpiration = task.result?.expirationTimestamp ?: 0
+                        userPreferences.fireBaseAuthTokenExpiration = Date().time + (task.result?.expirationTimestamp ?: 0)
                         userPreferences.phoneNumber = it.result?.user?.phoneNumber
 
                         val intent = Intent(this, MainActivity::class.java)

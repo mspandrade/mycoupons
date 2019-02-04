@@ -51,9 +51,7 @@
             android:inputType="number"
             android:letterSpacing="0.3"
             android:maxLength="7"
-            android:screenReaderFocusable="true"
             android:selectAllOnFocus="true"
-            android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.Material.Widget.TextView"
             android:textSize="18sp"
             android:hint="@string/hintEditText"/>
@@ -66,26 +64,7 @@
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/backgroundLoading"
-        android:visibility="gone">
-
-        <ProgressBar
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/cell_loading"/>
 
 </FrameLayout>
 
